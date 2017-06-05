@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form action='/admin/alterar' method='post' enctype="multipart/form-data">
+		Nome: <input type='text' name='nome' value="<%= @comunicador.nome %>"> <br/>
+		<input type="hidden" name="id" value="<%= @comunicador.id %>">
+		<input type='submit'>
+	</form>
+</body>
+</html>

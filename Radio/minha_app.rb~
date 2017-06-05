@@ -1,0 +1,129 @@
+# enconding: utf-8
+
+require 'pg'
+require 'sinatra'
+require 'erb'
+require './database.rb'
+require 'sinatra/base'
+require 'tilt/erb'
+
+
+get '/' do
+	erb :home
+end
+
+get '/adicionar' do
+	erb :form
+end
+
+post '/adicionar' do
+
+	comunicador = Comunicador.new
+	comunicador.nome = params['nome'].to_s
+	comunicadorDAO = ComunicadorDAO.new
+	id = comunicadorDAO.adicionar(comunicador)
+	comunicador.id = id
+
+	comunicador.foto = './public/upload/'+"comunicador_"+id+File.extname(params['arquivo'][:filename])
+
+ 	File.open(comunicador.foto, "wb") do |f|
+  	 f.write(params['arquivo'][:tempfile].read)
+ 	end
+
+ 	comunicadorDAO.adicionarFoto(comunicador)
+
+	erb :form
+	redirect '/'
+end
+
+get '/listar' do
+	comunicadorDAO = ComunicadorDAO.new
+	@vet = comunicadorDAO.listar
+	erb :listar
+end
+
+get '/excluir/:id' do
+	comunicadorDAO = ComunicadorDAO.new
+	comunicadorDAO.excluir(params['id'].to_i)
+	redirect '/listar'
+end
+
+get '/tela_alterar/:id' do
+	comunicadorDAO = ComunicadorDAO.new
+	@comunicador = comunicadorDAO.obter(params['id'].to_i)
+	erb :tela_alterar
+end
+
+post '/alterar' do
+	comunicador = Comunicador.new
+	comunicador.id = params['id'].to_i
+	comunicador.nome = params['nome'].to_s
+	comunicadorDAO = ComunicadorDAO.new
+	comunicadorDAO.editar(comunicador)
+	redirect '/listar'
+end
+
+get '/adicionarPrograma' do
+	comunicadorDAO = ComunicadorDAO.new
+	@vet = comunicadorDAO.listar
+	erb :formPrograma
+end
+
+post '/adicionarPrograma' do
+	programa = Programa.new
+	programa.nome = params['nome'].to_s
+	programa.dias = params['dias'].to_s
+	programa.hora_inicio = params['hora_inicio'].to_i
+	programa.hora_fim = params['hora_fim'].to_i
+	programa.duracao = (programa.hora_fim - programa.hora_inicio).to_i
+	programa.id_comunicador = params['id_comunicador'].to_i
+
+	programaDAO = ProgramaDAO.new
+	id = programaDAO.adicionar(programa)
+ 	programa.id = id
+
+	programa.foto = './public/upload/'+"programa_"+id+File.extname(params['arquivo'][:filename])
+
+ 	File.open(programa.foto, "wb") do |f|
+  	 f.write(params['arquivo'][:tempfile].read)
+ 	end
+
+ 	programaDAO.adicionarFoto(programa)
+
+	comunicadorDAO = ComunicadorDAO.new
+	@vet = comunicadorDAO.listar
+
+	erb :formPrograma
+	redirect '/listarProgramas'
+end
+
+get '/listarProgramas' do
+	programaDAO = ProgramaDAO.new
+	@vetProgramas = programaDAO.listar
+	erb :listarProgramas
+end
+
+get '/excluirPrograma/:id' do
+	programaDAO = ProgramaDAO.new
+	programaDAO.excluir(params['id'].to_i)
+	redirect '/'
+end
+
+get '/tela_alterarProgramas/:id' do
+	programaDAO = ProgramaDAO.new
+	@programa = programaDAO.obter(params['id'].to_i)
+	erb :tela_alterarProgramas
+end
+
+post '/alterarPrograma' do
+	programa = Programa.new
+	programa.nome = params['nome'].to_s
+	programa.dias = params['dias'].to_s
+	programa.hora_inicio = params['hora_inicio'].to_i
+	programa.hora_fim = params['hora_fim'].to_i
+	programa.duracao = (programa.hora_fim - programa.hora_inicio).to_i
+	programa.id_comunicador = params['id_comunicador'].to_i
+	programaDAO = ProgramaDAO.new
+	programaDAO.editar(programa)
+	redirect '/listar'
+end

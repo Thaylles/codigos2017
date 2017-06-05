@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+	<title>Programas</title>
+</head>
+<body>
+<% @vetProgramas.each do |programa| %>
+<div class="media">
+    	<img class="media-object" src="<%=programa.logo%>">
+  		<div class="media-body">
+    		<h4 class="media-heading"> <%= programa.nome %> </h4>
+          <p class="text-right">ID: <%= programa.id %></p>
+          <p>	Dia:  <%= programa.dias%><br></p> 
+			<p>	Duração: <%= programa.duracao%><br></p> 
+			<p> Hora de inicio: <%= programa.hora_inicio%><br></p> 
+			<p> Hora Final: <%= programa.hora_fim%><br></p> 
+			<p> Comunicador: <%= programa.nome_comunicador%><br></p> 
+   </div>
+</div>
+<br>
+<br>
+<% end %>
+</body>
+</html>

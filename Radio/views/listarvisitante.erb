@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+<% @vet.each do |comunicador| %>
+<div class="twPc-div">
+    <a class="twPc-bg twPc-block"></a>
+	<div>
+	<img src= "<%= comunicador.foto %>" class="twPc-avatarImg">
+		<div class="twPc-divUser">
+			<div class="twPc-divName">
+				<a href="https://twitter.com/mertskaplan"><%= comunicador.nome %></a>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<% end %>
+</div>
+</div>
+</body>
+</html>

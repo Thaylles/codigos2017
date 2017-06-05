@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form action='/admin/alterarPrograma' method='post' enctype="multipart/form-data">
+		<font color="white"> Nome do Programa: </font><input type='text' name='nome' value="<%= @programa.nome %>"> <br />
+		<font color="white"> Dias: </font> <select name='dias'>   
+		<option name="<%= @programa.dias %>" value="segunda">Segunda</option>
+		<option name="<%= @programa.dias %>" value="terca">Terça</option>
+		<option name="<%= @programa.dias %>" value="quarta">Quarta</option>
+		<option name="<%= @programa.dias %>" value="quinta">Quinta</option>
+		<option name="<%= @programa.dias %>" value="sexta">Sexta</option>
+		<option name="<%= @programa.dias %>" value="sabado">Sabado</option>
+		<option name="<%= @programa.dias %>" value="domingo">Domingo</option>
+	</select> <br/>
+
+		<font color="white"> Hora Inicio: </font><input type='time' name='hora_inicio' value="<%= @programa.hora_inicio %>"> <br />
+		<font color="white"> Hora Fim: </font><input type='time' name='hora_fim' value="<%= @programa.hora_fim %>"> <br />
+		<input type="hidden" name="id" value="<%= @programa.id %>">
+		<input type='submit'>
+	</form>
+</body>
+</html>

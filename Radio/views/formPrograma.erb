@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<form action='/admin/adicionarPrograma' method='post' enctype="multipart/form-data">
+	<font color="white">
+		Nome do Programa: <font color="black"> <input type='text' name='nome'> </font> <br/>
+		Dia: <font color="black"><select name='dias'>
+		<option value="segunda">Segunda</option>
+		<option value="terca">Terça</option>
+		<option value="quarta">Quarta</option>
+		<option value="quinta">Quinta</option>
+		<option value="sexta">Sexta</option>
+		<option value="sabado">Sabado</option>
+		<option value="domingo">Domingo</option>
+	</select> </font> <br/>
+
+
+	Hora Inicio: <font color="black"> <input type='time' name='hora_inicio'> </font> <br/>
+	Hora Final: <font color="black"> <input type='time' name='hora_fim' > </font> <br/>
+	Logo do Programa: <font color="black"> <input type="file" name="arquivo" accept="image/*"></font>
+	Comunicador: <font color="black">
+	<select name="id_comunicador">	
+		<% @vet.each do |comunicador| %>
+		<option value="<%=comunicador.id%>"> <%= comunicador.nome %> </option>
+		<% end %>
+	</select>
+	</font> <br/>
+</font>
+<font color="black"> <input type='submit'>
+</form>
+<button onclick="location.href='/'"> Voltar </button>
+</body>
+</html>
