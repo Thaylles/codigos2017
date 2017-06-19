@@ -6,6 +6,15 @@
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+    display: block;
+} 
+
 .media-object{
   position: absolute;
   left: 40%;
@@ -16,9 +25,11 @@
 nav{
    background: url('bg.jpg') repeat;
 }
+
 body {
   background-image: url("bg.jpg");
 }
+
 .twPc-div {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #e1e8ed;

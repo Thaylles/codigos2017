@@ -1,7 +1,13 @@
 <html>
 <head>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
 	<title>Programas</title>
+ <script type="text/javascript">
+   $(document).ready(function(){
+  $("#muda").click(function () {
+    $("body").css("background-image", "url('bg1.jpg')");
+  }) 
+});
+ </script>
 </head>
 <body>
 <% @vetProgramas.each do |programa| %>
@@ -25,6 +31,7 @@
 </div>
 <br>
 <br>
-<font color="red"> <% end %>
+<% end %>
+<button type="button" class="btn-warning" id="muda">Mudar Fundo</button>
 </body>
 </html>

@@ -7,6 +7,7 @@ require './database.rb'
 require 'sinatra/base'
 require 'tilt/erb'
 require 'rubygems'
+#require 'twilio-ruby' 
 
 get '/' do
 	if (session[:login].nil? && session[:senha].nil?)
@@ -181,6 +182,14 @@ get '/login/form' do
   erb :login_form, :layout => :layout2
 end
 
+get '/' do
+  erb :home, :layout => :layout3
+end
+
+get '/admin' do
+  erb :homead, :layout => :layout3
+end
+
 post '/login/attempt' do
   session[:identity] = params['username']
   where_user_came_from = session[:previous_url] || '/'
@@ -200,6 +209,10 @@ get '/logout' do
 	redirect '/' 
 end
 
+get '/admin/extras' do
+	erb :ajax
+end
+
 post '/login' do
 	login = params['login']
 	senha = params['senha']
@@ -216,4 +229,12 @@ end
 
 get '/admin' do
 	erb :homead
+end
+
+get '/adiciona/:parametro' do
+	con = params['parametro']
+	comunicador = Comunicador.new
+	comunicador.nome = params['parametro'].to_s
+	comunicadorDAO = ComunicadorDAO.new
+	id = comunicadorDAO.adicionar(comunicador)
 end

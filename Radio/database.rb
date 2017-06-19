@@ -3,7 +3,7 @@ require './models.rb'
 
 class ComunicadorDAO
 	def initialize
-	@con = PG.connect :dbname => 'postgres', 
+	@con = PG.connect :dbname => 'thaylles', 
 	:user => 'postgres', 
     :password => 'postgres',
     :host => 'localhost'
@@ -54,7 +54,7 @@ end
 
 class ProgramaDAO
   def initialize
-    @con = PG.connect :dbname => 'postgres', 
+    @con = PG.connect :dbname => 'thaylles', 
     :user => 'postgres', 
     :password => 'postgres',
     :host => 'localhost'
