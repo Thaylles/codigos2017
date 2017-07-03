@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<script type="text/javascript">
+		// https://www.w3schools.com/xml/ajax_intro.asp
+
+			function criaObjetoAjax(){
+				if (window.XMLHttpRequest) {
+					// modern browsers
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// old IE browsers
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				return xmlhttp;
+			}	
+
+			function listar(){
+
+				
+
+				var xhttp = criaObjetoAjax();
+
+	    xhttp.onreadystatechange = function() {
+
+	        if (this.readyState == 4 && this.status == 200) {
+
+	            document.getElementById('ninguemEntendeu').innerHTML = this.responseText;
+	        }
+	    };
+
+
+			    xhttp.open("GET", "/ultimos", true);
+
+			    //xhttp.open("POST", "ajax_test.asp", true);
+				//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				//xhttp.send("fname=Henry&lname=Ford");
+			    
+			    xhttp.send(); 
+			}
+
+
+		</script>
+
+	<title>Preços</title>
+</head>
+<body>
+<h1 align="center">Ultimos Presentes</h1>
+<div align="center" id="ninguemEntendeu">
+
+<button class="btn-info" href="javascript:void(0)" onclick="listar()"> Listar Ultimos Presentes</button>
+</div>
+<br>
+<br>
+
+<h1 align="center">Lista Presentes</h1>
+<div align="center">
+Maior preço dos presentes: R$ <%= session[:maior]%> <br>
+Menor preço dos presentes: R$ <%= session[:menor]%> <br>
+Media dos preços: R$ <%= session[:media] %> <br>
+Moda dos preços: R$ <%= session[:moda] %> <br>
+</div>
+</body>
+</html>

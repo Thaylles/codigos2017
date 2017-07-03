@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Radio</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+
+	<script src="/vendor/jquery-1.9.1.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="/vendor/bootstrap/js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" style="text-decoration-color: green;" href="/"><b>Prova Ruby</b></a>
+				<a class="navbar-brand" style="text-decoration-color: green;" href="/adicionar"> <b>Adicionar Presente</b></a>
+				<a class="navbar-brand" style="text-decoration-color: green;" href="/listar"> <b>Listar Presente</b></a>
+				<a class="navbar-brand" style="text-decoration-color: green;" href="/precos"> <b>Preço dos presentes</b></a>
+			</div>
+		</nav>
+
+		<div>
+			<%if @error then %>
+			<div class="alert alert-error"><%=@error%></div>
+			<% end %>
+			<%= yield %>
+		</div>
+
+	</div>
+</body>
+</html>

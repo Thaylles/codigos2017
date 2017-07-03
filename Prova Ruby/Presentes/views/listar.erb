@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+<% @vet.each do |presente| %>
+<div class="twPc-div">
+    <a class="twPc-bg twPc-block"></a>
+	<div>
+		<div class="twPc-button">
+	    <button class="btn-danger" onclick="window.location.href='/excluir/<%= presente.id %>'">Excluir</button>
+	</div>
+	<img src= "<%= presente.icone %>" class="twPc-avatarImg">
+		<div class="twPc-divUser">
+			<div class="twPc-divName">
+				Nome: <%= presente.nome %>
+				<br> Preço: R$ <%= presente.preco %>,00 <br>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<% end %>
+</div>
+</div>
+</body>
+</html>

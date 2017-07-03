@@ -1,0 +1,53 @@
+<html>
+<head>
+	<script type="text/javascript">
+		function criaObjetoAjax(){
+			if (window.XMLHttpRequest) {
+					// modern browsers
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// old IE browsers
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				return xmlhttp;
+			}
+
+			function add(){
+				
+				var xhttp = criaObjetoAjax();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById('ninguemEntendeu').innerHTML = this.responseText;
+					}
+				};
+				xhttp.open("GET", "/adiciona/"+document.getElementById("cont").value, true);
+
+				xhttp.send(); 
+			}
+			
+			function listar(){
+				
+				$.getJSON("http://api.wunderground.com/api/ef5a156e62f050d2/conditions/q/OH/riogrande.json", function(data){	
+					var temp_c = data['current_observation']['temp_c'];
+					$("#tempo").html("A temperatura em Rio Grande é " + temp_c+"ºC");
+				});
+
+			}
+
+</script>
+</head>
+<body>
+<div>
+<input type="text" id="cont" name="cont">
+<button onclick="add()">Adicionar Comunicador SEM FOTO</button>
+</div>
+<br>
+	<div id="ninguemEntendeu">
+
+	</div><br><br>
+	<a href="javascript:void(0)" onclick="listar()"> Ver temperatura</a>
+	<div id="tempo">
+
+	</div><br><br>	
+</body>	
+</html>
